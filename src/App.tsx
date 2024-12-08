@@ -1,13 +1,14 @@
 import './App.css'
-import { Button } from './components/ui/button'
+import HomePage from './pages/HomePage'
+
 
 function App() {
   return (
     <>
-    <Button>Click me</Button>
+    <HomePage/>
     </>
   )
-  
+
 }
 
 export default App
