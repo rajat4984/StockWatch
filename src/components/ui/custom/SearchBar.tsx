@@ -1,4 +1,4 @@
-import { Search, ChartCandlestick } from "lucide-react"
+import { ChartCandlestick } from "lucide-react"
 import { ArrowUpWideNarrow, ArrowDownWideNarrow } from "lucide-react"
 
 const SearchBar = () => {
