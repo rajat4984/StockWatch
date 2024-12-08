@@ -5,7 +5,7 @@ const SearchBar = () => {
     return (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="relative">
-                <input placeholder="Search your favourite stock" className="main-input pl-3 placeholder-gray-300 w-[400px] h-[50px] rounded-lg" />
+                <input placeholder="Search your favourite stock" className="main-input pl-3 placeholder-gray-300 w-[350px] md:w-[500px] h-[50px] rounded-lg" />
                 {/* <Search className="text-gray-400 absolute right-3 top-[30%]" /> */}
                 <ChartCandlestick strokeWidth={1.4} className="text-gray-300 absolute right-3 top-[30%]" />
 
