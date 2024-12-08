@@ -24,7 +24,7 @@ const Navbar = () => {
     }
 
     const hideMenu = () => {
-        animate('.mobile-nav', { y: -200 }, { duration: .3 })
+        animate('.mobile-nav', { y: -200,opacity:1 }, { duration: .3 })
         setIsMenuOpen(false)
     }
 
@@ -45,7 +45,7 @@ const Navbar = () => {
 
             </div>
             <div ref={scope} className="absolute">
-                <motion.ul initial={{ y: -200 }} className="mobile-nav w-[90vw] mx-auto p-3 bg-black">
+                <motion.ul initial={{ y: -200,opacity:0, }} className="mobile-nav w-[90vw] mx-auto p-3 bg-black">
                     <li className="py-2  border border-t-0 border-l-0 border-r-0  border-white-300"><Moon /></li>
                     <li className="py-2  border border-t-0 border-l-0 border-r-0  border-white-300">Signup</li>
                     <li className="py-2  border border-t-0 border-l-0 border-r-0  border-white-300">Login</li>
