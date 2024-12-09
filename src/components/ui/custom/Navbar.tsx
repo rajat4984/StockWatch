@@ -7,7 +7,7 @@ import { useState } from "react";
 const MenuLinks = () => {
     return (
         <ul className="flex items-center">
-            <li className="hover:bg-white hover:text-black cursor-pointer transition-all duration-300 px-2 rounded-sm"><Moon /></li>
+            <li className="cursor-pointer transition-all duration-300 px-2 rounded-sm"><Moon  /></li>
             <li className="hover:bg-white hover:text-black cursor-pointer transition-all duration-300 px-2 rounded-sm">Signup</li>
             <li className="hover:bg-white hover:text-black cursor-pointer transition-all duration-300 px-2 rounded-sm">Login</li>
         </ul>
@@ -19,12 +19,12 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const showMenu = () => {
-        animate('.mobile-nav', { y: 100 }, { duration: .3 })
+        animate('.mobile-nav', { y: 100 ,opacity:1}, { duration: .3 })
         setIsMenuOpen(true)
     }
 
     const hideMenu = () => {
-        animate('.mobile-nav', { y: -200,opacity:1 }, { duration: .3 })
+        animate('.mobile-nav', { y: -200, opacity: 1 }, { duration: .3 })
         setIsMenuOpen(false)
     }
 
@@ -44,15 +44,15 @@ const Navbar = () => {
                 }
 
             </div>
-            <div ref={scope} className="absolute">
-                <motion.ul initial={{ y: -200,opacity:0, }} className="mobile-nav w-[90vw] mx-auto p-3 bg-black">
-                    <li className="py-2  border border-t-0 border-l-0 border-r-0  border-white-300"><Moon /></li>
-                    <li className="py-2  border border-t-0 border-l-0 border-r-0  border-white-300">Signup</li>
-                    <li className="py-2  border border-t-0 border-l-0 border-r-0  border-white-300">Login</li>
+            <div ref={scope} className="absolute md:hidden block">
+                <motion.ul initial={{ y: -200, opacity: 0, }} className="mobile-nav w-[95vw] mx-auto p-3 bg-black">
+                    <li className="bg-[#232323] rounded-t-lg border-b border-gray-700 cursor pointer py-3 px-4 border border-t-0 border-l-0 border-r-0  border-white-300"><Moon /></li>
+                    <li className=" bg-[#232323] border-gray-700   py-3 px-4  border border-t-0 border-l-0 border-r-0  border-white-300">Signup</li>
+                    <li className="bg-[#232323] rounded-b-lg border-gray-700  py-3 px-4  border border-t-0 border-l-0 border-r-0  border-white-300">Login</li>
                 </motion.ul>
             </div>
         </nav>
     )
 }
-
+``
 export default Navbar;
