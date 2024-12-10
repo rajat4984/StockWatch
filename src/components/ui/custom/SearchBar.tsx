@@ -2,6 +2,7 @@ import axios from "axios";
 import { ChartCandlestick } from "lucide-react";
 import { ArrowUpWideNarrow, ArrowDownWideNarrow } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type searchItem = Record<string, any>;
 
@@ -19,14 +20,17 @@ const SearchSuggestion = ({ searchData }: searchSuggestionProps) => {
               className="bg-[#232323] p-3 last:rounded-b-lg border-b border-gray-700 hover:bg-[#353535] cursor-pointer text-sm"
               key={index}
             >
-              <div className="flex justify-between items-start">
+              <Link
+                to={`/stockInfo/${searchStock.symbol}`}
+                className="flex justify-between items-start"
+              >
                 <div>
                   <p>{searchStock.symbol}</p>
                   <p>{searchStock.longname}</p>
                 </div>
 
                 <p>{searchStock.quoteType}</p>
-              </div>
+              </Link>
             </div>
           )
         );
@@ -52,7 +56,9 @@ const SearchBar = () => {
       <div className="relative">
         <input
           placeholder="Search your favourite stock"
-          className={`main-input pl-3 placeholder-gray-300 w-[350px] md:w-[500px] h-[50px] transition-all rounded-t-lg ${!searchString && "rounded-lg"}`}
+          className={`main-input pl-3 placeholder-gray-300 w-[350px] md:w-[500px] h-[50px] transition-all rounded-t-lg ${
+            !searchString && "rounded-lg"
+          }`}
           onChange={(e) => searchSuggestion(e.target.value)}
         />
         {/* <Search className="text-gray-400 absolute right-3 top-[30%]" /> */}
