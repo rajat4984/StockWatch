@@ -3,6 +3,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Moon, X } from "lucide-react"
 import { motion, useAnimate } from "motion/react"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MenuLinks = () => {
     return (
@@ -19,20 +20,20 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const showMenu = () => {
-        animate('.mobile-nav', { y: 100 ,opacity:1}, { duration: .3 })
+        animate('.mobile-nav', { y: 100 ,opacity:1,visibility:"hidden"}, { duration: .3 })
         setIsMenuOpen(true)
     }
 
     const hideMenu = () => {
-        animate('.mobile-nav', { y: -200, opacity: 1 }, { duration: .3 })
+        animate('.mobile-nav', { y: -200, opacity: 1 , visibility:'visible'}, { duration: .3 })
         setIsMenuOpen(false)
     }
 
     return (
         <nav className="flex items-center justify-between py-8 px-6 pb-0">
-            <div className="flex items-center gap-2 text-3xl">
-                <FaBullseye />  Watchify
-            </div>
+            <Link to="/" className="flex items-center gap-2 text-3xl">
+                <FaBullseye  />  Watchify
+            </Link>
 
             <div className="hidden md:block">
                 <MenuLinks />

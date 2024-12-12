@@ -1,4 +1,4 @@
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -60,6 +60,7 @@ const Chart = () => {
               tickMargin={10}
               tickFormatter={(value) => value.slice(0, 3)}
             />
+            <YAxis />
 
             <ChartTooltip
               cursor={false}

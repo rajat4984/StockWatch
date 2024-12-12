@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div>
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           <Route element={<HomePage />} path="/" />
           <Route element={<StockInfo />} path="/stockInfo/:stockSymbol" />
