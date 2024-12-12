@@ -45,7 +45,7 @@ const SearchBar = () => {
 
   const searchSuggestion = async (searchTerm: string) => {
     const searchRes = await axios(
-      `http://localhost:4000/stocks/search/${searchTerm}`
+      `${import.meta.env.VITE_DEV_URL}stocks/search/${searchTerm}`
     );
 
     setSearchString(searchTerm);

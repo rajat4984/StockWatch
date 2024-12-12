@@ -8,6 +8,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+// import { useEffect } from "react";
 const chartData = [
   { month: "January", desktop: 186 },
   { month: "February", desktop: 305 },
@@ -23,7 +24,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const Chart = () => {
+type chatProp = {
+  singleStockData: Record<string, any>;
+};
+
+const Chart = ({ singleStockData }: chatProp) => {
+  console.log(singleStockData?.meta, "singlestockdata");
+
   return (
     <Card className="border-none">
       {/* <CardHeader>
