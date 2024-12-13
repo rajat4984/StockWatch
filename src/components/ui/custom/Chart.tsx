@@ -59,6 +59,9 @@ const Chart = ({ singleStockData }: ChartProp) => {
                   tickCount={10}
                   dataKey="value"
                   domain={[singleStockData[0]?.value]}
+                  axisLine={false}
+                  tickLine={false}
+                  hide={true}
                 />
 
                 <ChartTooltip

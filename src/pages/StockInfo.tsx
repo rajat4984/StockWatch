@@ -100,8 +100,8 @@ const StockInfo = () => {
   const stockPeriodArr = ["1D", "5D", "1M", "6M", "YTD", "1Y", "5Y"];
 
   return (
-    <div className="py-8 px-10">
-      <div className="  sm:w-[70%] sm:h-[70%] lg:w-[90%] lg:h-[10%]">
+    <div className="py-8 px-4 md:px-12">
+      <div className="sm:w-[70%] sm:h-[70%] lg:w-[90%] lg:h-[10%]">
         <div className="flex items-center gap-5">
           <h1 className="text-xl ">
             {singleStockData?.meta.longName}{" "}
