@@ -5,17 +5,28 @@ import Chart from "@/components/ui/custom/Chart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import dateformat from "dateformat";
 
 type singleStockState = Record<string, any>;
+interface ObjectLiteral {
+  [key: string]: any;
+}
 
 const StockInfo = () => {
   const { stockSymbol } = useParams();
   const [singleStockData, setSingleStockData] = useState<singleStockState>();
+  const [chartData, setChartData] = useState([]);
+  const [currentRange, setCurrentStockRange] = useState("1d");
+
   // const [currentStockRange, setCurrentStockRange] = useState("1D");
 
   useEffect(() => {
     getSingleStockInfo();
   }, []);
+
+  useEffect(() => {
+    formatChartData();
+  }, [singleStockData]);
 
   const getSingleStockInfo = async () => {
     const stockRes = await axios(
@@ -25,7 +36,7 @@ const StockInfo = () => {
   };
 
   const stockValueRange = async (timeRange: string) => {
-    // setCurrentStockRange(timeRange);
+    setCurrentStockRange(timeRange);
     const stockRes = await axios(
       `${
         import.meta.env.VITE_DEV_URL
@@ -34,11 +45,63 @@ const StockInfo = () => {
     setSingleStockData(() => ({ ...stockRes.data }));
   };
 
+  const formatChartData = () => {
+    let formattedDate = "";
+    let uniqueDates = new Set();
+    const dataArr = singleStockData?.quotes?.map((item: ObjectLiteral) => {
+      console.log(item, "item");
+      switch (currentRange) {
+        case "1D":
+          formattedDate = dateformat(item.date, "dd/mm");
+          break;
+        case "5D":
+          formattedDate = dateformat(item.date, "dd/mm");
+          break;
+
+        case "1M":
+          formattedDate = dateformat(item.date, "dd/mm");
+          break;
+        case "6M":
+          formattedDate = dateformat(item.date, "mm/yyyy");
+          break;
+
+        case "YTD":
+          formattedDate = dateformat(item.date, "mm/yy");
+          break;
+
+        case "1Y":
+          formattedDate = dateformat(item.date, "mm/yy");
+          break;
+
+        case "5Y":
+          formattedDate = dateformat(item.date, "mm/yy");
+          break;
+
+        default:
+          break;
+      }
+
+      if (uniqueDates.has(formattedDate)) {
+        formattedDate = "";
+      } else {
+        uniqueDates.add(formattedDate);
+      }
+
+      return {
+        value: Number(item?.close?.toFixed(2)),
+        date: formattedDate,
+      };
+    });
+
+    // dataArr?.unshift({ value: 0, date: "" });
+    setChartData(dataArr);
+  };
+
   const stockPeriodArr = ["1D", "5D", "1M", "6M", "YTD", "1Y", "5Y"];
 
   return (
     <div className="py-8 px-10">
-      <div className="  sm:w-[70%] sm:h-[70%] lg:w-[50%] lg:h-[50%]">
+      <div className="  sm:w-[70%] sm:h-[70%] lg:w-[90%] lg:h-[10%]">
         <div className="flex items-center gap-5">
           <h1 className="text-xl ">
             {singleStockData?.meta.longName}{" "}
@@ -72,15 +135,11 @@ const StockInfo = () => {
               );
             })}
           </TabsList>
-          {/* <TabsContent value="account">
-          Make changes to your account here.
-        </TabsContent>
-        <TabsContent value="password">Change your password here.</TabsContent> */}
         </Tabs>
 
         <Chart
           key={singleStockData?.meta.symbol}
-          singleStockData={singleStockData ?? {}}
+          singleStockData={chartData ?? {}}
         />
       </div>
     </div>
